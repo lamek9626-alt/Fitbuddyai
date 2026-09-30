@@ -1,0 +1,14 @@
+{% extends "base.html" %}{% block title %}FitBuddy — Generate{% endblock %}{% block content %}
+<section class="hero"><div><p class="eyebrow">AI-POWERED FITNESS PLANNING</p><h1>Your next 7 days, <span>planned.</span></h1>
+<p class="lead">Tell FitBuddy your goal and preferred intensity. Gemini creates a practical weekly workout plan plus nutrition and recovery guidance.</p>
+<div class="feature-row"><span>✓ 7-day structure</span><span>✓ Feedback revisions</span><span>✓ Saved locally</span></div></div>
+<form class="card form-card" action="/generate-workout" method="post"><p class="eyebrow">GET STARTED</p><h2>Build your plan</h2>
+<div class="form-grid">
+<label>Name<input name="username" required minlength="2" maxlength="120" placeholder="Alex Kumar"></label>
+<label>User ID<input name="user_id" required pattern="[A-Za-z0-9_-]+" maxlength="80" placeholder="alex01"></label>
+<label>Age<input name="age" type="number" min="13" max="100" required placeholder="25"></label>
+<label>Weight (kg)<input name="weight" type="number" min="20.1" max="500" step="0.1" required placeholder="70"></label>
+<label>Fitness goal<select name="goal" required><option value="weight_loss">Weight loss</option><option value="muscle_gain">Muscle gain</option><option value="general_wellness" selected>General wellness</option><option value="flexibility">Flexibility</option></select></label>
+<label>Workout intensity<select name="intensity" required><option value="low">Low</option><option value="medium" selected>Medium</option><option value="high">High</option></select></label>
+</div><div class="notice"><strong>Safety first:</strong> General wellness guidance only. Stop if you feel unwell and seek professional advice when appropriate.</div>
+<button class="button primary full" type="submit">Generate my 7-day plan →</button></form></section>{% endblock %}

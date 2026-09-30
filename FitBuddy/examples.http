@@ -1,0 +1,11 @@
+### Health
+GET http://127.0.0.1:8000/health
+
+### Generate a plan
+POST http://127.0.0.1:8000/generate-workout
+Content-Type: application/x-www-form-urlencoded
+
+username=Alex+Kumar&user_id=alex01&age=25&weight=70&goal=general_wellness&intensity=medium
+
+### API docs
+GET http://127.0.0.1:8000/docs

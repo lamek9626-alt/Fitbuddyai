@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block title %}FitBuddy — Users{% endblock %}{% block content %}
+<section class="page-title"><div><p class="eyebrow">LOCAL ADMIN VIEW</p><h1>All users & plans</h1><p class="lead">Review saved profiles and original/revised plan JSON.</p></div><a class="button primary" href="/">+ New plan</a></section>
+<div class="notice">This page is for local development. Add authentication before exposing it publicly.</div>
+{% if users %}<section class="user-list">{% for user in users %}<article class="card user-card"><div class="user-summary"><div><p class="eyebrow">{{ user.user_id }}</p><h2>{{ user.username }}</h2></div>
+<form action="/delete-user/{{ user.user_id }}" method="post" onsubmit="return confirm('Delete this user and plan?');"><button class="button danger" type="submit">Delete</button></form></div>
+<div class="profile-strip compact">{% for label,value in [("Age",user.age),("Weight",user.weight ~ " kg"),("Goal",goal_labels[user.goal]),("Intensity",user.intensity|title)] %}<div><span>{{ label }}</span><strong>{{ value }}</strong></div>{% endfor %}</div>
+{% if user.plan %}<details><summary>View original plan</summary><pre>{{ user.plan.original_plan }}</pre></details>{% if user.plan.updated_plan %}<details><summary>View updated plan</summary><pre>{{ user.plan.updated_plan }}</pre></details>{% endif %}{% if user.plan.feedback %}<div class="previous-feedback"><strong>Feedback:</strong> {{ user.plan.feedback }}</div>{% endif %}{% endif %}
+</article>{% endfor %}</section>{% else %}<div class="card empty"><h2>No users yet</h2><p>Generate your first plan.</p></div>{% endif %}{% endblock %}
